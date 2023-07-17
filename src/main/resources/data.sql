@@ -73,6 +73,7 @@ CREATE TABLE `project` (
                            `name` varchar(30) DEFAULT NULL,
                            `description` varchar(255) DEFAULT NULL
 );
+insert into `project` values (1, 'PS1', 'TDH')
 /*!40101 SET character_set_client = @saved_cs_client */;
 ;
 /*!40000 ALTER TABLE `project` DISABLE KEYS */;

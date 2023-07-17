@@ -1,13 +1,16 @@
 package vn.dube.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.sql.Timestamp;
-import java.util.Objects;
 
 @Entity
-@Table(name = "employee_timesheet", schema = "dube", catalog = "")
+@Table(name = "employee_timesheet")
 @IdClass(EmployeeTimesheetEntityPK.class)
+@Getter
+@Setter
 public class EmployeeTimesheetEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -41,97 +44,4 @@ public class EmployeeTimesheetEntity {
     @Basic
     @Column(name = "approved_time")
     private Timestamp approvedTime;
-
-    public Integer getEmployeeId() {
-        return employeeId;
-    }
-
-    public void setEmployeeId(Integer employeeId) {
-        this.employeeId = employeeId;
-    }
-
-    public String getTimesheetId() {
-        return timesheetId;
-    }
-
-    public void setTimesheetId(String timesheetId) {
-        this.timesheetId = timesheetId;
-    }
-
-    public Integer getTotalWorkingHours() {
-        return totalWorkingHours;
-    }
-
-    public void setTotalWorkingHours(Integer totalWorkingHours) {
-        this.totalWorkingHours = totalWorkingHours;
-    }
-
-    public Integer getTotalOtHours() {
-        return totalOtHours;
-    }
-
-    public void setTotalOtHours(Integer totalOtHours) {
-        this.totalOtHours = totalOtHours;
-    }
-
-    public Integer getTotalMandays() {
-        return totalMandays;
-    }
-
-    public void setTotalMandays(Integer totalMandays) {
-        this.totalMandays = totalMandays;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getUpdatedBy() {
-        return updatedBy;
-    }
-
-    public void setUpdatedBy(String updatedBy) {
-        this.updatedBy = updatedBy;
-    }
-
-    public Timestamp getUpdatedTime() {
-        return updatedTime;
-    }
-
-    public void setUpdatedTime(Timestamp updatedTime) {
-        this.updatedTime = updatedTime;
-    }
-
-    public String getApprovedBy() {
-        return approvedBy;
-    }
-
-    public void setApprovedBy(String approvedBy) {
-        this.approvedBy = approvedBy;
-    }
-
-    public Timestamp getApprovedTime() {
-        return approvedTime;
-    }
-
-    public void setApprovedTime(Timestamp approvedTime) {
-        this.approvedTime = approvedTime;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        EmployeeTimesheetEntity that = (EmployeeTimesheetEntity) o;
-        return Objects.equals(employeeId, that.employeeId) && Objects.equals(timesheetId, that.timesheetId) && Objects.equals(totalWorkingHours, that.totalWorkingHours) && Objects.equals(totalOtHours, that.totalOtHours) && Objects.equals(totalMandays, that.totalMandays) && Objects.equals(status, that.status) && Objects.equals(updatedBy, that.updatedBy) && Objects.equals(updatedTime, that.updatedTime) && Objects.equals(approvedBy, that.approvedBy) && Objects.equals(approvedTime, that.approvedTime);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(employeeId, timesheetId, totalWorkingHours, totalOtHours, totalMandays, status, updatedBy, updatedTime, approvedBy, approvedTime);
-    }
 }

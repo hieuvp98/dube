@@ -1,15 +1,18 @@
 package vn.dube.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.sql.Date;
 import java.sql.Timestamp;
-import java.util.Objects;
 
 @Entity
-@Table(name = "timesheet", schema = "dube", catalog = "")
+@Table(name = "timesheet")
+@Getter
+@Setter
 public class TimesheetEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Id
     @Column(name = "id")
     private String id;
@@ -37,89 +40,4 @@ public class TimesheetEntity {
     @Basic
     @Column(name = "updated_time")
     private Timestamp updatedTime;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public Date getMonth() {
-        return month;
-    }
-
-    public void setMonth(Date month) {
-        this.month = month;
-    }
-
-    public Integer getTotalWorkingDay() {
-        return totalWorkingDay;
-    }
-
-    public void setTotalWorkingDay(Integer totalWorkingDay) {
-        this.totalWorkingDay = totalWorkingDay;
-    }
-
-    public String getWeekendDate() {
-        return weekendDate;
-    }
-
-    public void setWeekendDate(String weekendDate) {
-        this.weekendDate = weekendDate;
-    }
-
-    public String getHolidayDate() {
-        return holidayDate;
-    }
-
-    public void setHolidayDate(String holidayDate) {
-        this.holidayDate = holidayDate;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
-    }
-
-    public String getUpdatedBy() {
-        return updatedBy;
-    }
-
-    public void setUpdatedBy(String updatedBy) {
-        this.updatedBy = updatedBy;
-    }
-
-    public Timestamp getUpdatedTime() {
-        return updatedTime;
-    }
-
-    public void setUpdatedTime(Timestamp updatedTime) {
-        this.updatedTime = updatedTime;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        TimesheetEntity that = (TimesheetEntity) o;
-        return Objects.equals(id, that.id) && Objects.equals(month, that.month) && Objects.equals(totalWorkingDay, that.totalWorkingDay) && Objects.equals(weekendDate, that.weekendDate) && Objects.equals(holidayDate, that.holidayDate) && Objects.equals(status, that.status) && Objects.equals(createdBy, that.createdBy) && Objects.equals(updatedBy, that.updatedBy) && Objects.equals(updatedTime, that.updatedTime);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, month, totalWorkingDay, weekendDate, holidayDate, status, createdBy, updatedBy, updatedTime);
-    }
 }
