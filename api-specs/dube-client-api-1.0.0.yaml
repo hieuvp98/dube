@@ -1,0 +1,40 @@
+openapi: 3.0.3
+info:
+  title: Dube api specification
+  description: Dube api specification
+  version: 1.0.0
+servers:
+  - url: 'http:localhost'
+
+paths:
+  /client-api/v1/employees:
+    get:
+      summary: Get employee info
+      description: Get employee list
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: employee id
+      operationId: getEmployeeInfo
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/employeeResponseBody'
+      tags:
+        - employee
+components:
+  schemas:
+    employeeResponseBody:
+      $ref: 'schemas/employee-response-body.yaml'
+
+
+
+
+
+  
