@@ -1,17 +1,59 @@
+#spring:
+#  sql:
+#    init:
+#      mode: embedded
+#  datasource:
+#    url: jdbc:h2:mem:mydb
+#    username: sa
+#    password: sa
+#    driverClassName: org.h2.Driver
+#  jpa:
+#    database-platform: org.hibernate.dialect.H2Dialect
+#    hibernate:
+#      ddl-auto: none
+#    show-sql: true
+#  h2:
+#    console:
+#      enabled: true
+
+server:
+  port: 9090
+app:
+  config:
+    keycloak:
+      url: http://localhost:8080/auth
+      realm: dube-company
+      client-secret: WyOiJfJTh41eSqgMSe13hTd7BWefRSrE
+      client-id: dube-core-clients
+
 spring:
-  sql:
-    init:
-      mode: embedded
   datasource:
-    url: jdbc:h2:mem:mydb
-    username: sa
-    password: sa
-    driverClassName: org.h2.Driver
-  jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-    hibernate:
-      ddl-auto: none
-    show-sql: true
-  h2:
-    console:
-      enabled: true
+    url: jdbc:mysql://localhost:3309/core_bank
+    username: root
+    password: 123456789
+    jpa:
+      hibernate:
+        ddl-auto: update
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: ${app.config.keycloak.url}/realms/${app.config.keycloak.realm}
+            authorization-uri: ${app.config.keycloak.url}/realms/${app.config.keycloak.realm}/protocol/openid-connect/auth
+            jwk-set-uri: ${app.config.keycloak.url}/realms/${app.config.keycloak.realm}/protocol/openid-connect/certs
+            token-uri: ${app.config.keycloak.url}/realms/${app.config.keycloak.realm}/protocol/openid-connect/token
+            user-info-authentication-method: header
+            user-info-uri: ${app.config.keycloak.url}/realms/${app.config.keycloak.realm}/protocol/openid-connect/userinfo
+            user-name-attribute: preferred_username
+        registration:
+          dube-core-clients:
+            authorization-grant-type: authorization_code
+            client-id: ${app.config.keycloak.client-id}
+            client-secret: ${app.config.keycloak.client-secret}
+            provider: keycloak
+            redirect-uri: http://localhost:8080/login/oauth2/code/keycloak
+            scope: openid
+      resourceserver:
+        jwt:
+          jwk-set-uri: ${app.config.keycloak.url}/realms/${app.config.keycloak.realm}/protocol/openid-connect/certs

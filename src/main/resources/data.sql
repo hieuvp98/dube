@@ -19,7 +19,7 @@ DROP TABLE IF EXISTS `employee`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `employee` (
-                            `id` int NOT NULL AUTO_INCREMENT,
+                            `id` int NOT NULL AUTO_INCREMENT primary key,
                             `name` varchar(40) NOT NULL,
                             `username` varchar(20) NOT NULL,
                             `role` varchar(20) NOT NULL,
